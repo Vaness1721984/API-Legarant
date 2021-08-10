@@ -11,7 +11,7 @@ global with sharing class AccountSync {
     }
 
 @HttpPut
-global static Account updateAccount(String Name){
+global static Id updateAccount(String Name){
     RestRequest request = RestContext.request;
 String id = request.requestURI.substring(request.requestURI.lastIndexOf('/')+1);
 Account result = [SELECT Id FROM Account WHERE Id = :id];
@@ -19,7 +19,7 @@ Account result = [SELECT Id FROM Account WHERE Id = :id];
     thisAccount.Id = id;  
     thisAccount.Name=Name;
              update thisAccount;
-             return thisAccount;
+             return thisAccount.Id;
 }
 
 @HttpDelete
