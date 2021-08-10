@@ -14,7 +14,7 @@ global with sharing class ContractSync {
     }
 
 @HttpPut
-global static Contract updateContract(String Status, Id AccountId, Date StartDate, Integer ContractTerm){
+global static Id updateContract(String Status, Id AccountId, Date StartDate, Integer ContractTerm){
     RestRequest request = RestContext.request;
 String id = request.requestURI.substring(request.requestURI.lastIndexOf('/')+1);
 Contract result = [SELECT Id FROM Contract WHERE Id = :id];
@@ -25,6 +25,6 @@ Contract result = [SELECT Id FROM Contract WHERE Id = :id];
     thisContract.StartDate=StartDate;
     thisContract.ContractTerm=ContractTerm;
              update thisContract;
-             return thisContract;
+             return thisContract.Id;
 }
 }
