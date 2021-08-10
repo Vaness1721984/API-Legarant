@@ -2,7 +2,7 @@
 global with sharing class ContactSync {
         
   @HttpPost
-    global static Id createNewContact(String Salutation, String FirstName, String LastName, Date Birthdate, String Phone, String Email) {
+    global static Id createNewContact(String Salutation, String FirstName, String LastName, Date Birthdate,String Phone, String Email) {
 
     List<Contact> ctcList = [SELECT Id FROM Contact WHERE Email =: Email] ;
     Contact ctc = (ctcList != null&&ctcList.size()>0)?ctcList[0]:null;
@@ -23,7 +23,7 @@ global with sharing class ContactSync {
 }
 
 @HttpPut
-global static Contact updateContact(String Salutation, String FirstName, String LastName, Date Birthdate, String Phone, String Email){
+global static Id updateContact(String Salutation, String FirstName, String LastName, Date Birthdate, String Phone, String Email){
     RestRequest request = RestContext.request;
 String id = request.requestURI.substring(request.requestURI.lastIndexOf('/')+1);
 Contact result = [SELECT Id FROM Contact WHERE Id = :id];
@@ -36,11 +36,11 @@ Contact result = [SELECT Id FROM Contact WHERE Id = :id];
              thisContact.Phone = Phone ;
              thisContact.Email = Email;
              update thisContact;
-             return thisContact;
+             return thisContact.Id;
 }
 
 @HttpPatch
-global static Contact deleteContact(){
+global static Id deleteContact(){
     RestRequest request = RestContext.request;
 String id = request.requestURI.substring(request.requestURI.lastIndexOf('/')+1);
 Contact result = [SELECT Deactivated__c FROM Contact WHERE Id = :id];
@@ -48,7 +48,7 @@ Contact result = [SELECT Deactivated__c FROM Contact WHERE Id = :id];
     thisContact.Id = id; 
     thisContact.Deactivated__c = true;  
              update thisContact;
-             return thisContact;
+             return thisContact.Id;
 }
 
 
