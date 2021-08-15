@@ -1,0 +1,242 @@
+{
+	"info": {
+		"_postman_id": "7b26ed92-db99-40e8-ae2a-3bbb163c9dd2",
+		"name": "Contacts Integration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Security Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"pm.environment.set('Token', responseJson.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://login.salesforce.com/services/oauth2/token?username={{username}}&password={{password}}&grant_type={{grant_type}}&client_id={{client_id}}&client_secret={{client_secret}}",
+					"protocol": "https",
+					"host": [
+						"login",
+						"salesforce",
+						"com"
+					],
+					"path": [
+						"services",
+						"oauth2",
+						"token"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "{{username}}"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}"
+						},
+						{
+							"key": "grant_type",
+							"value": "{{grant_type}}"
+						},
+						{
+							"key": "client_id",
+							"value": "{{client_id}}"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{client_secret}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateContact",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Salutation\": \"{{Salutation}}\",\r\n    \"FirstName\": \"{{FirstName}}\",\r\n    \"LastName\": \"{{LastName}}\",\r\n    \"Birthdate\": \"{{Birthdate}}\",\r\n    \"Phone\": \"{{Phone}}\",\r\n    \"Email\": \"{{Email}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{instance-url}}//services/apexrest/ContactSync/V1/",
+					"protocol": "https",
+					"host": [
+						"{{instance-url}}"
+					],
+					"path": [
+						"",
+						"services",
+						"apexrest",
+						"ContactSync",
+						"V1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateContact",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Salutation\": \"{{Salutation}}\",\r\n    \"FirstName\": \"{{FirstName}}\",\r\n    \"LastName\": \"{{LastName}}\",\r\n    \"Birthdate\": \"{{Birthdate}}\",\r\n    \"Phone\": \"{{Phone}}\",\r\n    \"Email\": \"{{Email}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{instance-url}}//services/apexrest/ContactSync/V1/{{Id}}",
+					"protocol": "https",
+					"host": [
+						"{{instance-url}}"
+					],
+					"path": [
+						"",
+						"services",
+						"apexrest",
+						"ContactSync",
+						"V1",
+						"{{Id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteContact",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Deactivated__c\": \"{{Deactivated__c}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{instance-url}}//services/apexrest/ContactSync/V1/{{Id}}",
+					"protocol": "https",
+					"host": [
+						"{{instance-url}}"
+					],
+					"path": [
+						"",
+						"services",
+						"apexrest",
+						"ContactSync",
+						"V1",
+						"{{Id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Id",
+			"value": ""
+		}
+	]
+}

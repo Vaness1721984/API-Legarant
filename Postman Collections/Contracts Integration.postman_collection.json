@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "1e125af7-74aa-4b91-8f12-23a20b38ce90",
+		"name": "Contracts Integration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Security Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();\r",
+							"pm.environment.set('Token', responseJson.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://login.salesforce.com/services/oauth2/token?username={{username}}&password={{password}}&grant_type={{grant_type}}&client_id={{client_id}}&client_secret={{client_secret}}",
+					"protocol": "https",
+					"host": [
+						"login",
+						"salesforce",
+						"com"
+					],
+					"path": [
+						"services",
+						"oauth2",
+						"token"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "{{username}}"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}"
+						},
+						{
+							"key": "grant_type",
+							"value": "{{grant_type}}"
+						},
+						{
+							"key": "client_id",
+							"value": "{{client_id}}"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{client_secret}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Contract",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Status\": \"{{Status}}\",\r\n    \"Name\": \"{{Name}}\",\r\n    \"AccountId\": \"{{AccountId}}\",\r\n    \"StartDate\": \"{{StartDate}}\",\r\n    \"ContractTerm\": \"{{ContractTerm}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{instance-url}}//services/apexrest/ContractSync/V1/",
+					"protocol": "https",
+					"host": [
+						"{{instance-url}}"
+					],
+					"path": [
+						"",
+						"services",
+						"apexrest",
+						"ContractSync",
+						"V1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Contract",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Status\": \"{{Status}}\",\r\n    \"Name\": \"{{Name}}\",\r\n    \"AccountId\": \"{{AccountId}}\",\r\n    \"StartDate\": \"{{StartDate}}\",\r\n    \"ContractTerm\": \"{{ContractTerm}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{instance-url}}//services/apexrest/ContractSync/V1/{{Id}}",
+					"protocol": "https",
+					"host": [
+						"{{instance-url}}"
+					],
+					"path": [
+						"",
+						"services",
+						"apexrest",
+						"ContractSync",
+						"V1",
+						"{{Id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
