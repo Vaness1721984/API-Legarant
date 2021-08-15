@@ -173,8 +173,17 @@
 				},
 				"method": "DELETE",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "https://{{instance-url}}/services/apexrest/AccountSync/V1/0010900000cUOUiAAO",
+					"raw": "https://{{instance-url}}/services/apexrest/AccountSync/V1/{{Id}}",
 					"protocol": "https",
 					"host": [
 						"{{instance-url}}"
@@ -184,7 +193,7 @@
 						"apexrest",
 						"AccountSync",
 						"V1",
-						"0010900000cUOUiAAO"
+						"{{Id}}"
 					]
 				}
 			},
