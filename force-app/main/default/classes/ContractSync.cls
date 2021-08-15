@@ -2,9 +2,10 @@
 global with sharing class ContractSync {
         
   @HttpPost
-    global static Id createNewContract(String Status, Id AccountId, Date StartDate, Integer ContractTerm) {
+    global static Id createNewContract(String Name, String Status, Id AccountId, Date StartDate, Integer ContractTerm) {
 // Creation of a new Contract
   Contract thisContract = new Contract(
+    Name=Name,
             Status=Status,
              AccountId = AccountId,
             StartDate = StartDate,
@@ -15,7 +16,7 @@ global with sharing class ContractSync {
     }
 
 @HttpPut
-global static Id updateContract(String Status, Id AccountId, Date StartDate, Integer ContractTerm){
+global static Id updateContract(String Name, String Status, Id AccountId, Date StartDate, Integer ContractTerm){
   // Add the Contract Id as a parameter in the URL
     RestRequest request = RestContext.request;
 String id = request.requestURI.substring(request.requestURI.lastIndexOf('/')+1);
@@ -23,6 +24,7 @@ String id = request.requestURI.substring(request.requestURI.lastIndexOf('/')+1);
 Contract result = [SELECT Id FROM Contract WHERE Id = :id];
     Contract thisContract = new Contract(); 
     thisContract.Id = id;  
+    thisContract.Name = Name;
     thisContract.Status=Status;
     thisContract.AccountId=AccountId;
     thisContract.StartDate=StartDate;
