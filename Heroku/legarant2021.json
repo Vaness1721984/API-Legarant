@@ -3,8 +3,8 @@
     {
       "object_name": "Account",
       "config": {
-        "access": "read_only",
-        "sf_notify_enabled": false,
+        "access": "read_write",
+        "sf_notify_enabled": true,
         "sf_polling_seconds": 600,
         "sf_max_daily_api_calls": 30000,
         "fields": {
@@ -21,14 +21,15 @@
           "SystemModstamp": {
             "unique": false
           }
-        }
+        },
+        "applied_at": "2021-08-03T16:48:07.871257Z"
       }
     },
     {
       "object_name": "Contact",
       "config": {
-        "access": "read_only",
-        "sf_notify_enabled": false,
+        "access": "read_write",
+        "sf_notify_enabled": true,
         "sf_polling_seconds": 600,
         "sf_max_daily_api_calls": 30000,
         "fields": {
@@ -53,7 +54,8 @@
           "Id": {
             "unique": true
           }
-        }
+        },
+        "applied_at": "2021-08-03T16:45:46.190196Z"
       }
     },
     {
@@ -84,14 +86,14 @@
             "unique": true
           }
         },
-        "applied_at": "2021-08-03T16:46:56.009519Z"
+        "applied_at": "2021-08-15T20:59:46.159654Z"
       }
     }
   ],
   "connection": {
     "app_name": "legarant2021",
     "organization_id": "00D09000007yqCiEAI",
-    "exported_at": "2021-08-15T14:57:23.049755+00:00",
+    "exported_at": "2021-08-15T21:03:26.753077+00:00",
     "features": {
       "disable_bulk_writes": false,
       "poll_db_no_merge": true,
