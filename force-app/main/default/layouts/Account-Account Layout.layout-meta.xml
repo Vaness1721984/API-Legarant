@@ -62,11 +62,7 @@
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
         <label>Custom Links</label>
-        <layoutColumns>
-            <layoutItems>
-                <customLink>Billing</customLink>
-            </layoutItems>
-        </layoutColumns>
+        <layoutColumns/>
         <layoutColumns/>
         <layoutColumns/>
         <style>CustomLinks</style>
