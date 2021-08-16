@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-  <types>
+<types>
     <name>ApexClass</name>
     <members>AccountSync</members>
     <members>AccountSyncTest</members>
@@ -10,12 +10,16 @@
     <members>ContractSyncTest</members>
   </types>
   <types>
-    <name>CustomField</name>
-    <members>Contact.Deactivated__c</members>
-  </types>
+    <name>ContentAsset</name>
+    <members>Logo_Legarant</members>
+  </types> 
   <types>
     <name>CustomApplication</name>
     <members>Legarant</members>
+  </types>
+  <types>
+    <name>CustomField</name>
+    <members>Contact.Deactivated__c</members>
   </types>
   <types>
     <name>FlexiPage</name>
