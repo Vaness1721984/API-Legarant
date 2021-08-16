@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+  <types>
+    <name>ApexClass</name>
+    <members>AccountSync</members>
+    <members>AccountSyncTest</members>
+    <members>ContactSync</members>
+    <members>ContactSyncTest</members>
+    <members>ContractSync</members>
+    <members>ContractSyncTest</members>
+  </types>
+  <types>
+    <name>CustomField</name>
+    <members>Contact.Deactivated__c</members>
+  </types>
+  <types>
+    <name>CustomApplication</name>
+    <members>Legarant</members>
+  </types>
+  <types>
+    <name>FlexiPage</name>
+    <members>Legarant_UtilityBar</members>
+  </types>
+  <version>52.0</version>
+</Package>
