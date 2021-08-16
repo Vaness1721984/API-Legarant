@@ -10,6 +10,10 @@
     <members>ContractSyncTest</members>
   </types>
   <types>
+    <name>CompactLayout</name>
+    <members>Contact.Compact_Layout_Contact</members>
+  </types>
+  <types>
     <name>ContentAsset</name>
     <members>Logo_Legarant</members>
   </types> 
@@ -24,6 +28,12 @@
   <types>
     <name>FlexiPage</name>
     <members>Legarant_UtilityBar</members>
+  </types>
+  <types>
+    <name>Layout</name>
+    <members>Account-Account Layout</members>
+    <members>Contact-Contact Layout</members>
+    <members>Contract-Contract Layout</members>
   </types>
   <version>52.0</version>
 </Package>
