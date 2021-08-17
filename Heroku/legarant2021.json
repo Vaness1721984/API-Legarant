@@ -35,7 +35,6 @@
         "fields": {
           "LastName": {},
           "AccountId": {},
-          "Languages__c": {},
           "Name": {},
           "Birthdate": {},
           "Phone": {},
@@ -86,14 +85,14 @@
             "unique": true
           }
         },
-        "applied_at": "2021-08-15T20:59:46.159654Z"
+        "applied_at": "2021-08-17T13:43:06.691041Z"
       }
     }
   ],
   "connection": {
     "app_name": "legarant2021",
-    "organization_id": "00D09000007yqCiEAI",
-    "exported_at": "2021-08-15T21:03:26.753077+00:00",
+    "organization_id": "00D3N0000002f49UAA",
+    "exported_at": "2021-08-17T18:52:35.990611+00:00",
     "features": {
       "disable_bulk_writes": false,
       "poll_db_no_merge": true,

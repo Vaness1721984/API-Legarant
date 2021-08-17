@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a2b1790d-6b13-4940-8a9b-a0c99695c190",
+		"_postman_id": "1be054ed-2cb5-4403-83cf-220b7953dfae",
 		"name": "Account Integration",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -23,10 +23,10 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "https://login.salesforce.com/services/oauth2/token?username={{username}}&password={{password}}&grant_type={{grant_type}}&client_id={{client_id}}&client_secret={{client_secret}}",
+					"raw": "https://cs128.salesforce.com/services/oauth2/token?grant_type={{grant_type}}&client_id={{client_id}}&client_secret={{client_secret}}&username={{username}}&password={{password}}",
 					"protocol": "https",
 					"host": [
-						"login",
+						"cs128",
 						"salesforce",
 						"com"
 					],
@@ -36,14 +36,6 @@
 						"token"
 					],
 					"query": [
-						{
-							"key": "username",
-							"value": "{{username}}"
-						},
-						{
-							"key": "password",
-							"value": "{{password}}"
-						},
 						{
 							"key": "grant_type",
 							"value": "{{grant_type}}"
@@ -55,6 +47,14 @@
 						{
 							"key": "client_secret",
 							"value": "{{client_secret}}"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}"
 						}
 					]
 				}
@@ -63,6 +63,19 @@
 		},
 		{
 			"name": "Create Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -109,6 +122,19 @@
 		},
 		{
 			"name": "Update Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -155,6 +181,19 @@
 		},
 		{
 			"name": "Delete Account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -198,6 +237,26 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7b26ed92-db99-40e8-ae2a-3bbb163c9dd2",
+		"_postman_id": "585e593c-f7cb-42c2-a024-5e767ec2cfca",
 		"name": "Contacts Integration",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -23,10 +23,10 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "https://login.salesforce.com/services/oauth2/token?username={{username}}&password={{password}}&grant_type={{grant_type}}&client_id={{client_id}}&client_secret={{client_secret}}",
+					"raw": "https://cs128.salesforce.com/services/oauth2/token?username={{username}}&password={{password}}&grant_type={{grant_type}}&client_id={{client_id}}&client_secret={{client_secret}}",
 					"protocol": "https",
 					"host": [
-						"login",
+						"cs128",
 						"salesforce",
 						"com"
 					],
@@ -62,7 +62,20 @@
 			"response": []
 		},
 		{
-			"name": "CreateContact",
+			"name": "Create Contact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -91,13 +104,12 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{instance-url}}//services/apexrest/ContactSync/V1/",
+					"raw": "https://{{instance-url}}/services/apexrest/ContactSync/V1/",
 					"protocol": "https",
 					"host": [
 						"{{instance-url}}"
 					],
 					"path": [
-						"",
 						"services",
 						"apexrest",
 						"ContactSync",
@@ -109,7 +121,20 @@
 			"response": []
 		},
 		{
-			"name": "UpdateContact",
+			"name": "Update Contact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -138,13 +163,12 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{instance-url}}//services/apexrest/ContactSync/V1/{{Id}}",
+					"raw": "https://{{instance-url}}/services/apexrest/ContactSync/V1/{{Id}}",
 					"protocol": "https",
 					"host": [
 						"{{instance-url}}"
 					],
 					"path": [
-						"",
 						"services",
 						"apexrest",
 						"ContactSync",
@@ -156,7 +180,29 @@
 			"response": []
 		},
 		{
-			"name": "DeleteContact",
+			"name": "Delete Contact",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -185,13 +231,12 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{instance-url}}//services/apexrest/ContactSync/V1/{{Id}}",
+					"raw": "https://{{instance-url}}/services/apexrest/ContactSync/V1/{{Id}}",
 					"protocol": "https",
 					"host": [
 						"{{instance-url}}"
 					],
 					"path": [
-						"",
 						"services",
 						"apexrest",
 						"ContactSync",
