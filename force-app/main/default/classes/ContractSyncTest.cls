@@ -1,8 +1,12 @@
 @isTest
 private class ContractSyncTest {
     @isTest static void testCreateNewContract() {
+        // Creation of a new Account
+        Account account = new Account();
+        account.Name ='TestAccount';
+        insert account;
          // Call the method to test and add parameters
-        Id thisContractId = ContractSync.createNewContract('TestContract','Draft', '0010900000btFSLAA2', Date.valueOf('2022-01-01'), 24);
+        Id thisContractId = ContractSync.createNewContract('TestContract','Draft',account.Id, Date.valueOf('2022-01-01'),24);
         // Retrieve Id & ContractTerm of the created Contract 
         Contract thisContract = [SELECT Id, ContractTerm FROM Contract WHERE Id =:thisContractId];
         // Verify the ContractTerm is equal to the created Contract
@@ -18,8 +22,10 @@ private class ContractSyncTest {
         request.addHeader('Content-Type', 'application/json');
         request.requestBody = Blob.valueOf('{"Status":"Activated"}');
         RestContext.request = request;
+        // Retrieve fields On created Contract
+        Contract ctc = [SELECT Name ,AccountId, StartDate, ContractTerm FROM Contract WHERE Id =: recordId];
         // Update all fields of existing record (only Status has changed)
-        Id thisContractId = ContractSync.updateContract('TestContract', 'Activated', '0010900000btFSLAA2', Date.valueOf('2022-01-01') , 12);
+        Id thisContractId = ContractSync.updateContract(ctc.Name, 'Activated', ctc.AccountId, ctc.StartDate , ctc.ContractTerm);
         // Retrieve Id & Status of the updated Contract
         Contract thisContract = [SELECT Id, Status FROM Contract WHERE Id=:thisContractId];
         // Verify the Status is equal to the updated Contract
@@ -28,11 +34,16 @@ private class ContractSyncTest {
 
     // Helper method
 static Id CreateTestRecord(){
+    // Create test record for Account
+    Account accountTest = new Account();
+        accountTest.Name ='TestAccount';
+    insert accountTest;
+   
     // Create test record for Contract
     Contract contractTest = new Contract(
     Name = 'TestContract',
      Status = 'Draft',
-     AccountId = '0010900000btFSLAA2',
+     AccountId = accountTest.Id,
      StartDate = Date.valueOf('2022-01-01'),
      ContractTerm = 12
         );
